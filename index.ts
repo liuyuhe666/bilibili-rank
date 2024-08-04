@@ -91,18 +91,18 @@ async function main() {
         newContent = newContent.replace(
             gc('FOOTER'),
             m`
-                <p align="center">此文件 <i>README</i> <b>间隔 6 小时</b>自动刷新生成！
+                <p align="center">此 <i>页面</i> <b>间隔 6 小时</b>自动刷新生成！
                 </br>
                 刷新于：${now.toLocaleString(undefined, {
-                timeStyle: 'short',
-                dateStyle: 'short',
-                timeZone,
+                    timeStyle: 'short',
+                    dateStyle: 'short',
+                    timeZone,
                 })}
                 <br/>
                 下一次刷新：${next.toLocaleString(undefined, {
-                timeStyle: 'short',
-                dateStyle: 'short',
-                timeZone,
+                    timeStyle: 'short',
+                    dateStyle: 'short',
+                    timeZone,
                 })}</p>
             `,
         );
@@ -111,7 +111,12 @@ async function main() {
     await rm('./README.md', { force: true });
     await writeFile('./README.md', newContent, { encoding: 'utf-8' });
 
-    const result = md.render(newContent);
+    let result = md.render(newContent);
+    const htmlTemplate = await readFile('./index.template.html', { encoding: 'utf-8' });
+    result = htmlTemplate.replace(
+        gc('CONTENT'),
+        `${result}`
+    );
     await writeFile('./index.html', result, { encoding: 'utf-8' });
 }
 
