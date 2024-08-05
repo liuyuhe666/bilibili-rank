@@ -91,7 +91,7 @@ async function main() {
         newContent = newContent.replace(
             gc('FOOTER'),
             m`
-                <p align="center">此<i>页面</i><b>间隔 6 小时</b>自动刷新生成！
+                <p align="center">此页面<b>间隔 6 小时</b>自动刷新生成！
                 </br>
                 刷新于：${now.toLocaleString(undefined, {
                     timeStyle: 'short',
