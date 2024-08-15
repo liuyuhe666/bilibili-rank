@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it';
 import { minify } from 'html-minifier';
 import axios from 'axios';
 import * as rax from 'retry-axios';
+import { htmlEncodeByRegExp } from './util';
 
 
 rax.attach();
@@ -49,7 +50,7 @@ type ItemModel = {
 };
 
 function generateItemHTML<T extends Partial<ItemModel>>(item: T) {
-    return m`<li><span>${item.index} - <a href="${item.url}">${item.title}</a></span></li>`
+    return m`<li><span>${item.index} - <a href="${encodeURI(item.url)}">${htmlEncodeByRegExp(item.title)}</a></span></li>`
 }
 
 function m(html: TemplateStringsArray, ...args: any[]) {
@@ -120,4 +121,8 @@ async function main() {
     await writeFile('./index.html', result, { encoding: 'utf-8' });
 }
 
-main();
+try {
+    main();
+} catch (e) {
+    console.log(e);
+}
