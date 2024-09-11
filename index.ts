@@ -87,12 +87,12 @@ async function main() {
     // 注入 FOOTER
     {
         const now = new Date();
-        const next = dayjs().add(1, 'h').toDate();
+        const next = dayjs().add(6, 'h').toDate();
 
         newContent = newContent.replace(
             gc('FOOTER'),
             m`
-                <p align="center">此页面<strong>间隔 1 小时</strong>自动刷新生成！
+                <p align="center">此页面<strong>间隔 6 小时</strong>自动刷新生成！
                 </br>
                 刷新于：${now.toLocaleString(undefined, {
                     timeStyle: 'short',
