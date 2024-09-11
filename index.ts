@@ -87,12 +87,12 @@ async function main() {
     // 注入 FOOTER
     {
         const now = new Date();
-        const next = dayjs().add(6, 'h').toDate();
+        const next = dayjs().add(1, 'h').toDate();
 
         newContent = newContent.replace(
             gc('FOOTER'),
             m`
-                <p align="center">此页面<b>间隔 6 小时</b>自动刷新生成！
+                <p align="center">此页面<strong>间隔 1 小时</strong>自动刷新生成！
                 </br>
                 刷新于：${now.toLocaleString(undefined, {
                     timeStyle: 'short',
@@ -112,7 +112,7 @@ async function main() {
     await rm('./README.md', { force: true });
     await writeFile('./README.md', newContent, { encoding: 'utf-8' });
 
-    let result = md.render(newContent);
+    let result = m`${md.render(newContent)}`;
     const htmlTemplate = await readFile('./index.template.html', { encoding: 'utf-8' });
     result = htmlTemplate.replace(
         gc('CONTENT'),
