@@ -11,4 +11,4 @@
 
 <br />
 
-<p align=center>此页面<strong>间隔 1 小时</strong>自动刷新生成！<br>刷新于：9/11/24, 8:24 PM<br>下一次刷新：9/11/24, 9:24 PM</p>
+<p align=center>此页面<strong>间隔 6 小时</strong>自动刷新生成！<br>刷新于：9/11/24, 8:27 PM<br>下一次刷新：9/12/24, 2:27 AM</p>
