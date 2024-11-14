@@ -10,7 +10,7 @@ interface ItemModel {
 }
 
 function generateItemHTML(item: ItemModel) {
-  return m`<li><span>${item.index} - <a href="${encodeURI(item.url)}">${htmlEncodeByRegExp(item.title)}</a></span></li>`
+  return m`<li><span>${item.index} - <a href="${encodeURI(item.url)}" target="_blank">${htmlEncodeByRegExp(item.title)}</a></span></li>`
 }
 
 export function generateContent(data: VideoInfo[], template: string) {

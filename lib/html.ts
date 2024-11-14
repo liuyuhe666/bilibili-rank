@@ -10,10 +10,6 @@ export async function generateHTML(data: VideoInfo[]) {
   })
   const htmlTemplate = await readFile('./templates/index.template.html', { encoding: 'utf-8' })
   const content = generateContent(data, htmlTemplate)
-  let result = m`${md.render(content)}`
-  result = htmlTemplate.replace(
-    gc('CONTENT'),
-    `${result}`,
-  )
+  const result = m`${md.render(content)}`
   await writeFile('./index.html', result, { encoding: 'utf-8' })
 }
