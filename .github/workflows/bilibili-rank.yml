@@ -1,9 +1,6 @@
 name: bilibili rank
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
@@ -33,3 +30,8 @@ jobs:
           git add .
           git commit -m "update bilibili-rank" || exit 0
           git push origin main
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
