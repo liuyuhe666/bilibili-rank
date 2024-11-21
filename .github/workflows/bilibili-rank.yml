@@ -28,10 +28,17 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
-          git commit -m "update bilibili-rank" || exit 0
+          git commit -m "feat: update bilibili-rank" || exit 0
           git push origin main
+      - name: Copy
+        run: |
+          mkdir ./public
+          cp ./index.html ./public/
+          cp -r ./assets/ ./public/
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./public
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
